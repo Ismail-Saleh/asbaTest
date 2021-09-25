@@ -64,11 +64,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Container(
                                   child: TextField(
                                     controller: searchBox,
-                                    onChanged: (v){
+                                    onChanged: (v) {
+                                      if (v.isEmpty) {
+                                        isSearch = false;
+                                        value.setSearchlist = value.listResult;
+                                        return;
+                                      }
                                       var searchResult = value.listResult
-                                        .where((element) => element.name!.first!.toLowerCase()
-                                            .contains(v.toLowerCase()))
-                                        .toList();
+                                          .where((element) =>
+                                              element.name!.first!
+                                                  .toLowerCase()
+                                                  .contains(v.toLowerCase()) ||
+                                              element.name!.last!
+                                                  .toLowerCase()
+                                                  .contains(v.toLowerCase()) ||
+                                              element.email!
+                                                  .toLowerCase()
+                                                  .contains(v.toLowerCase()))
+                                          .toList();
+                                      value.setSearchlist = searchResult;
                                     },
                                     decoration: InputDecoration(
                                         contentPadding:
@@ -184,7 +198,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           TextStyles(
-                                            value: "Friends (200)",
+                                            value:
+                                                "Friends (${value.duplicate.length != 0 ? value.duplicate.length : value.listResult.length})",
                                             size: 14,
                                             weight: FontWeight.bold,
                                           ),
@@ -197,21 +212,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     ListView.builder(
-                                      itemCount: value.listResult.length,
+                                      itemCount: value.duplicate.length != 0
+                                          ? value.duplicate.length
+                                          : value.listResult.length,
                                       shrinkWrap: true,
                                       physics: NeverScrollableScrollPhysics(),
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        var result = value.listResult;
+                                        var result = value.duplicate.length != 0
+                                            ? value.duplicate
+                                            : value.listResult;
                                         return GestureDetector(
                                           onTap: () {
+                                            FocusScope.of(context).unfocus();
+                                            searchBox.text = "";
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     ProfileDetail(
-                                                  ress: value.peopleList
-                                                      .results?[index],
+                                                  ress: result[index],
                                                 ),
                                               ),
                                             );
