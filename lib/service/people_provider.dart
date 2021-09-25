@@ -31,5 +31,10 @@ class PeopleProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  setRemoveSearch() {
+    duplicate = [];
+    notifyListeners();
+  }
+
   List<Results> get setSearchList => duplicate;
 }
