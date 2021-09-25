@@ -11,6 +11,7 @@ class TextStyles extends StatelessWidget {
       this.color = Colors.black,
       this.size = 12,
       this.value,
+      this.isRecent = false,
       this.weight})
       : super(key: key);
 
@@ -18,12 +19,16 @@ class TextStyles extends StatelessWidget {
   final Color color;
   final FontWeight? weight;
   final double size;
+  final bool isRecent;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       value!,
       style: TextStyle(fontSize: size, fontWeight: weight, color: color),
+      maxLines: isRecent != true ? 1 : 2,
+      overflow: TextOverflow.ellipsis,
+      textAlign: TextAlign.center,
     );
   }
 }

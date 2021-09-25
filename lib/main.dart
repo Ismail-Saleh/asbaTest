@@ -1,12 +1,16 @@
 import 'package:asaba/model/appModel.dart';
 import 'package:asaba/pages.dart';
+import 'package:asaba/service/people_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(
-    providers: [ChangeNotifierProvider(create: (context) => AppModel())],
+    providers: [
+      ChangeNotifierProvider(create: (context) => AppModel()),
+      ChangeNotifierProvider(create: (context) => PeopleProvider())
+    ],
     child: Phoenix(
       child: MyApp(),
     ),
