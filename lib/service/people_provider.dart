@@ -8,12 +8,16 @@ import 'package:http/http.dart' as http;
 
 class PeopleProvider with ChangeNotifier {
   late People peopleList;
-
+  late List<Results> listResult, duplicateList = [];
   Future<void> getPeople() async {
     var res = await http.get(Uri.parse("$globalURL/?results=20"));
     if (res.statusCode == 200) {
+      var decode = json.decode(res.body);
       peopleList = People.fromJson(json.decode(res.body));
-      print(json.encode(peopleList));
+      for (var item in decode['results']) {
+        listResult.add(Results.fromJson(item));
+      }
+      print(listResult);
       notifyListeners();
     }
   }

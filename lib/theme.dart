@@ -28,7 +28,7 @@ class TextStyles extends StatelessWidget {
       style: TextStyle(fontSize: size, fontWeight: weight, color: color),
       maxLines: isRecent != true ? 1 : 2,
       overflow: TextOverflow.ellipsis,
-      textAlign: TextAlign.center,
+      textAlign: isRecent != true ? TextAlign.left : TextAlign.center,
     );
   }
 }

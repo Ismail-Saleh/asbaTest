@@ -1,7 +1,8 @@
 part of '../pages.dart';
 
 class ProfileDetail extends StatefulWidget {
-  const ProfileDetail({Key? key}) : super(key: key);
+  const ProfileDetail({Key? key, this.ress}) : super(key: key);
+  final Results? ress;
 
   @override
   _ProfileDetailState createState() => _ProfileDetailState();
@@ -29,7 +30,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: TextStyles(
-                        value: "(+62) 85214123123",
+                        value: widget.ress?.phone,
                         size: 14,
                         weight: FontWeight.bold,
                       ),
@@ -94,7 +95,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: TextStyles(
-                        value: "ann.Press@gmail.com",
+                        value: widget.ress?.email,
                         size: 14,
                         weight: FontWeight.bold,
                       ),
@@ -184,8 +185,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                   children: [
                     Container(
                       child: ImgStyle(
-                        url:
-                            "https://static.billboard.com/files/2020/04/aimer-2020-billboard-1548-1586464630-compressed.jpg",
+                        url: widget.ress?.picture!.large,
                         radius: 100,
                         height: 100,
                         width: 100,
@@ -194,7 +194,8 @@ class _ProfileDetailState extends State<ProfileDetail> {
                     Container(
                       margin: EdgeInsets.only(top: 15),
                       child: TextStyles(
-                        value: "Anna Press",
+                        value:
+                            "${widget.ress?.name!.title}. ${widget.ress?.name!.first} ${widget.ress?.name!.last}",
                         size: 18,
                         weight: FontWeight.bold,
                       ),
@@ -202,7 +203,8 @@ class _ProfileDetailState extends State<ProfileDetail> {
                     Container(
                       margin: EdgeInsets.only(top: 8),
                       child: TextStyles(
-                        value: "Surabaya, Indonesia",
+                        value:
+                            "${widget.ress?.location!.city}, ${widget.ress?.location!.country}",
                         size: 15,
                       ),
                     ),

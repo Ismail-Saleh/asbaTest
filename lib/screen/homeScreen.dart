@@ -9,6 +9,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool scrollVisibility = true;
+  late TextEditingController searchBox = TextEditingController();
+  bool isSearch = false;
 
   @override
   void initState() {
@@ -61,6 +63,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 margin: EdgeInsets.symmetric(horizontal: 15),
                                 child: Container(
                                   child: TextField(
+                                    controller: searchBox,
+                                    onChanged: (v){
+                                      var searchResult = value.listResult
+                                        .where((element) => element.name!.first!.toLowerCase()
+                                            .contains(v.toLowerCase()))
+                                        .toList();
+                                    },
                                     decoration: InputDecoration(
                                         contentPadding:
                                             EdgeInsets.fromLTRB(15, 18, 0, 14),
@@ -107,13 +116,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Container(
                                       height: 140,
                                       child: ListView.builder(
-                                        itemCount:
-                                            value.peopleList.results!.length,
+                                        itemCount: value.listResult.length,
                                         shrinkWrap: true,
                                         scrollDirection: Axis.horizontal,
                                         itemBuilder:
                                             (BuildContext context, int index) {
-                                          var result = value.peopleList.results;
+                                          var result = value.listResult;
 
                                           return Container(
                                             margin: EdgeInsets.only(right: 10),
@@ -189,20 +197,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     ListView.builder(
-                                      itemCount:
-                                          value.peopleList.results!.length,
+                                      itemCount: value.listResult.length,
                                       shrinkWrap: true,
                                       physics: NeverScrollableScrollPhysics(),
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        var result = value.peopleList.results;
+                                        var result = value.listResult;
                                         return GestureDetector(
                                           onTap: () {
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    ProfileDetail(),
+                                                    ProfileDetail(
+                                                  ress: value.peopleList
+                                                      .results?[index],
+                                                ),
                                               ),
                                             );
                                           },
