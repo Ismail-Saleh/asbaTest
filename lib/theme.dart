@@ -3,6 +3,10 @@ part of 'pages.dart';
 Color primaryColor = Color(0xFF33a2c7);
 Color accentColor = Color(0xFF1A237E);
 Color tittleColor = Color(0xFF1A237E);
+var spinDancing = SpinKitThreeBounce(
+  color: tittleColor,
+  size: 30.0,
+);
 
 //------------------------------------------------------------------------------------------ TEXT STLYES
 class TextStyles extends StatelessWidget {

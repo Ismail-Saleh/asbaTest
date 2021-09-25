@@ -11,7 +11,9 @@ class PeopleProvider with ChangeNotifier {
   int count = 30;
   late List<Results> listResult = [];
   late List<Results> duplicate = [];
+  late bool loading;
   Future<void> getPeople() async {
+    loading = true;
     var res = await http.get(Uri.parse("$globalURL/?results=$count"));
     if (res.statusCode == 200) {
       var decode = json.decode(res.body);
@@ -19,7 +21,7 @@ class PeopleProvider with ChangeNotifier {
       for (var item in decode['results']) {
         listResult.add(Results.fromJson(item));
       }
-      // print(listResult);
+      loading = false;
       notifyListeners();
     }
   }
