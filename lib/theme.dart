@@ -1,6 +1,6 @@
 part of 'pages.dart';
 
-Color primaryColor = Color(0xFFFDF8F0);
+Color primaryColor = Color(0xFF33a2c7);
 Color accentColor = Color(0xFF1A237E);
 Color tittleColor = Color(0xFF1A237E);
 

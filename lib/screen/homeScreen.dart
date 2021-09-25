@@ -61,7 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Container(
                                 margin: EdgeInsets.symmetric(horizontal: 15),
-                                child: Container(
+                                child: Theme(
+                                  data: ThemeData(
+                                      hintColor: Colors.grey.withOpacity(0.20)),
                                   child: TextField(
                                     controller: searchBox,
                                     onChanged: (v) {
@@ -97,8 +99,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                               BorderRadius.circular(40.0),
                                         ),
                                         filled: true,
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey[800]),
+                                        hintStyle: TextStyle(
+                                            color:
+                                                Colors.grey.withOpacity(0.50)),
                                         hintText: "Search...",
                                         fillColor: Colors.white70),
                                   ),
@@ -137,55 +140,71 @@ class _HomeScreenState extends State<HomeScreen> {
                                             (BuildContext context, int index) {
                                           var result = value.listResult;
 
-                                          return Container(
-                                            margin: EdgeInsets.only(right: 10),
-                                            child: Stack(
-                                              children: [
-                                                Column(
-                                                  children: [
-                                                    Container(
-                                                      margin: EdgeInsets.only(
-                                                          bottom: 10),
-                                                      child: ImgStyle(
-                                                        url: result?[index]
-                                                            .picture!
-                                                            .medium,
-                                                        radius: 100,
-                                                        height: 80,
-                                                        width: 80,
-                                                      ),
-                                                    ),
-                                                    Container(
-                                                      width: 80,
-                                                      child: TextStyles(
-                                                        isRecent: true,
-                                                        value:
-                                                            "${result?[index].name!.first} ${result?[index].name!.last}",
-                                                        size: 14,
-                                                        weight: FontWeight.bold,
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                                Positioned(
-                                                  top: 0,
-                                                  right: 0,
-                                                  child: Container(
-                                                    width: 20,
-                                                    height: 20,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(
-                                                          color: Colors.white,
-                                                          width: 1.5),
-                                                      color: Colors.green[600],
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                        Radius.circular(100),
-                                                      ),
-                                                    ),
+                                          return GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProfileDetail(
+                                                    ress: result[index],
                                                   ),
-                                                )
-                                              ],
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              margin:
+                                                  EdgeInsets.only(right: 10),
+                                              child: Stack(
+                                                children: [
+                                                  Column(
+                                                    children: [
+                                                      Container(
+                                                        margin: EdgeInsets.only(
+                                                            bottom: 10),
+                                                        child: ImgStyle(
+                                                          url: result?[index]
+                                                              .picture!
+                                                              .large,
+                                                          radius: 100,
+                                                          height: 80,
+                                                          width: 80,
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        width: 80,
+                                                        child: TextStyles(
+                                                          isRecent: true,
+                                                          value:
+                                                              "${result?[index].name!.first} ${result?[index].name!.last}",
+                                                          size: 14,
+                                                          weight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                  Positioned(
+                                                    top: 0,
+                                                    right: 0,
+                                                    child: Container(
+                                                      width: 20,
+                                                      height: 20,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            color: Colors.white,
+                                                            width: 1.5),
+                                                        color:
+                                                            Colors.green[600],
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                          Radius.circular(100),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
                                             ),
                                           );
                                         },
