@@ -131,7 +131,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 width: 20,
                                                 height: 20,
                                                 decoration: BoxDecoration(
-                                                  color: Colors.green,
+                                                  border: Border.all(
+                                                      color: Colors.white,
+                                                      width: 1.5),
+                                                  color: Colors.green[600],
                                                   borderRadius:
                                                       BorderRadius.all(
                                                     Radius.circular(100),
@@ -226,6 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   FaIcon(
                                                     FontAwesomeIcons.instagram,
                                                     size: 17,
+                                                    color: Colors.green[600],
                                                   ),
                                                   Padding(
                                                     padding:
