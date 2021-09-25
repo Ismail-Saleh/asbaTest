@@ -130,14 +130,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Container(
                                           margin: EdgeInsets.only(bottom: 20),
                                           child: TextStyles(
-                                            value: value.duplicate.length != 0
+                                            value: value.isSearch == true
                                                 ? "Search"
                                                 : "Recent",
                                             size: 18,
                                             weight: FontWeight.bold,
                                           ),
                                         ),
-                                        value.duplicate.length != 0
+                                        value.isSearch == true
                                             ? Container()
                                             : Container(
                                                 height: 140,
@@ -238,26 +238,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   },
                                                 ),
                                               ),
-                                        Container(
-                                          margin: EdgeInsets.only(top: 12),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              TextStyles(
-                                                value:
-                                                    "Friends (${value.duplicate.length != 0 ? value.duplicate.length : value.listResult.length})",
-                                                size: 14,
-                                                weight: FontWeight.bold,
+                                        value.isSearch
+                                            ? Container()
+                                            : Container(
+                                                margin:
+                                                    EdgeInsets.only(top: 12),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    TextStyles(
+                                                      value:
+                                                          "Friends (${value.duplicate.length != 0 ? value.duplicate.length : value.listResult.length})",
+                                                      size: 14,
+                                                      weight: FontWeight.bold,
+                                                    ),
+                                                    TextStyles(
+                                                      value: "Show All",
+                                                      size: 14,
+                                                      weight: FontWeight.bold,
+                                                    )
+                                                  ],
+                                                ),
                                               ),
-                                              TextStyles(
-                                                value: "Show All",
-                                                size: 14,
-                                                weight: FontWeight.bold,
-                                              )
-                                            ],
-                                          ),
-                                        ),
                                         ListView.builder(
                                           itemCount: value.duplicate.length != 0
                                               ? value.duplicate.length

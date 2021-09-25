@@ -12,6 +12,7 @@ class PeopleProvider with ChangeNotifier {
   late List<Results> listResult = [];
   late List<Results> duplicate = [];
   late bool loading;
+  bool isSearch = false;
   Future<void> getPeople() async {
     loading = true;
     var res = await http.get(Uri.parse("$globalURL/?results=$count"));
@@ -28,11 +29,13 @@ class PeopleProvider with ChangeNotifier {
 
   set setSearchlist(newValue) {
     duplicate = newValue;
+    isSearch = true;
     notifyListeners();
   }
 
   setRemoveSearch() {
     duplicate = [];
+    isSearch = false;
     notifyListeners();
   }
 
