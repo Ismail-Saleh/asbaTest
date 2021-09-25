@@ -12,6 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -169,65 +170,77 @@ class _HomeScreenState extends State<HomeScreen> {
                                   physics: NeverScrollableScrollPhysics(),
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    return Container(
-                                      margin: EdgeInsets.only(bottom: 15),
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            margin: EdgeInsets.only(right: 10),
-                                            child: ImgStyle(
-                                              url:
-                                                  "https://static.billboard.com/files/2020/04/aimer-2020-billboard-1548-1586464630-compressed.jpg",
-                                              radius: 100,
-                                              height: 60,
-                                              width: 60,
-                                            ),
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                ProfileDetail(),
                                           ),
-                                          Container(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                TextStyles(
-                                                  value: "Cristiano Rosser",
-                                                  size: 16,
-                                                  weight: FontWeight.bold,
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 8.0),
-                                                  child: TextStyles(
-                                                    value: "+0832131231",
+                                        );
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.only(bottom: 15),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              margin:
+                                                  EdgeInsets.only(right: 10),
+                                              child: ImgStyle(
+                                                url:
+                                                    "https://static.billboard.com/files/2020/04/aimer-2020-billboard-1548-1586464630-compressed.jpg",
+                                                radius: 100,
+                                                height: 60,
+                                                width: 60,
+                                              ),
+                                            ),
+                                            Container(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  TextStyles(
+                                                    value: "Cristiano Rosser",
                                                     size: 16,
+                                                    weight: FontWeight.bold,
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Spacer(),
-                                          Container(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                FaIcon(
-                                                  FontAwesomeIcons.instagram,
-                                                  size: 17,
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 8.0),
-                                                  child: TextStyles(
-                                                    value: "@crissA",
-                                                    size: 16,
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 8.0),
+                                                    child: TextStyles(
+                                                      value: "+0832131231",
+                                                      size: 16,
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                            Spacer(),
+                                            Container(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  FaIcon(
+                                                    FontAwesomeIcons.instagram,
+                                                    size: 17,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 8.0),
+                                                    child: TextStyles(
+                                                      value: "@crissA",
+                                                      size: 16,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     );
                                   },
